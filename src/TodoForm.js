@@ -6,15 +6,29 @@ const useInputValue = initialValue => {
 
   return {
     value,
-    onChange: e => setValue(e.target.value)
+    onChange: e => setValue(e.target.value),
+    resetValue: () => setValue("")
   };
 };
 
 // 抽取之后的
-export default () => {
-  const text = useInputValue("");
+export default ({ onSubmit }) => {
+  const { resetValue, ...text } = useInputValue("");
 
-  return <input type="text" {...text} />;
+  return (
+    <form
+      // onSubmit时，里面的方法会依次执行，可以是自定义的方法
+      onSubmit={e => {
+        e.preventDefault();
+        // 传入一个参数，调用父组件的onSubmit
+        onSubmit(text.value);
+        // 清空输入框内容
+        resetValue();
+      }}
+    >
+      <input type="text" {...text} />
+    </form>
+  );
 };
 
 // 抽取之前的
