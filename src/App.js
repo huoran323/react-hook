@@ -18,6 +18,10 @@ const App = () => {
   // 相当于 componentDidMount 和 componentDidUpdate:
   useEffect(() => {
     document.title = `you clicked ${count} times`;
+  }, [count]); // 添加参数[count]表示，只有在count变化的时候才去更新，例如更新name的时候，不走这个useEffect; 如果传进来的参数为[]空数组的话，只执行一次didMount，以后的更新didUpdate也不会执行
+
+  useEffect(() => {
+    console.log(`render ${name}`);
   });
 
   // componentDidMount() {
@@ -33,6 +37,7 @@ const App = () => {
       <p>{name}</p>
       <p>You clicked {count} times</p>
       <button onClick={() => setCount(count + 1)}>Click me</button>
+      <button onClick={() => setName("")}>Click me</button>
       {/* <Hello name="hello" /> */}
     </div>
   );

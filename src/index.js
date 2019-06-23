@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import App from "./App";
+import App from "./App";
 // import App from "./EmojiGenerator";
 // import App from "./TokenApp";
-import App from "./TodoList";
+// import App from "./TodoList";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
